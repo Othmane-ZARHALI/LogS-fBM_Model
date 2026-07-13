@@ -28,10 +28,10 @@ The model provides a unified framework:
 
 The main parameters are:
 
-- \(H\): Hurst exponent controlling roughness
-- \(T\): correlation scale
-- \(\lambda^2\): intermittency coefficient
-- \(\sigma^2\): variance parameter
+- $H$: Hurst exponent controlling roughness
+- $T$: correlation scale
+- $\lambda^2$: intermittency coefficient
+- $\sigma^2$: variance parameter
 
 ---
 
