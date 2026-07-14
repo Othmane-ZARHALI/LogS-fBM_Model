@@ -15,9 +15,9 @@ The code allows the simulation, calibration, and empirical analysis of the **Log
 
 The Log S-fBM model is defined through a log-normal random measure
 
-\[
+$$
 M_{H,T}(dt)=e^{\omega_{H,T}(t)}dt,
-\]
+$$
 
 where \(\omega_{H,T}(t)\) is a stationary Gaussian process related to a fractional Brownian motion with Hurst parameter \(H\).
 
