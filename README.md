@@ -24,7 +24,7 @@ where $\omega_{H,T}(t)$ is a stationary Gaussian process related to a fractional
 The model provides a unified framework:
 
 - **Rough volatility regime:** $0 < H < \frac12$
-- **Multifractal regime:** \(H \rightarrow 0\), recovering the log-normal multifractal random measure (MRM)
+- **Multifractal regime:** $H \rightarrow 0$, recovering the log-normal multifractal random measure (MRM)
 
 The main parameters are:
 
