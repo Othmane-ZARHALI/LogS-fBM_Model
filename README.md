@@ -19,11 +19,11 @@ $$
 M_{H,T}(dt)=e^{\omega_{H,T}(t)}dt,
 $$
 
-where \(\omega_{H,T}(t)\) is a stationary Gaussian process related to a fractional Brownian motion with Hurst parameter \(H\).
+where $\omega_{H,T}(t)$ is a stationary Gaussian process related to a fractional Brownian motion with Hurst parameter \(H\).
 
 The model provides a unified framework:
 
-- **Rough volatility regime:** \(0 < H < 1/2\)
+- **Rough volatility regime:** $0 < H < \frac12$
 - **Multifractal regime:** \(H \rightarrow 0\), recovering the log-normal multifractal random measure (MRM)
 
 The main parameters are:
