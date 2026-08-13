@@ -15,7 +15,7 @@ The code allows the simulation and statistical analysis of the **Log-Stationary 
 The log-volatility field $\omega_t$ is a centred, stationary Gaussian process with covariance
 
 $$
-C_{\omega}(t,s) = \frac{\lambda^2}{2H(1-2H)}.
+C_{\omega}(t,s) = \frac{\lambda^2}{2H(1-2H)}\left(1 - \frac{|t-s|^{2H}}{T^{2H}}\right) .
 $$
 
 driving two associated processes:
