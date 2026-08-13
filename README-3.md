@@ -15,7 +15,7 @@ The code allows the simulation and statistical analysis of the **Log-Stationary 
 The log-volatility field $\omega_t$ is a centred, stationary Gaussian process with covariance
 
 $$
-C_\omega(t,s) = \frac{\lambda^2}{2H(1-2H)}\left[1 - \frac{|t-s|^{2H}}{T^{2H}}\right] \mathbf{1}_{|t-s|<T},
+C_\omega(t,s) = \frac{\lambda^2}{2H(1-2H)}\left(1 - \frac{|t-s|^{2H}}{T^{2H}}\right) \mathbf{1}_{|t-s|<T},
 $$
 
 driving two associated processes:
@@ -38,50 +38,20 @@ $$
 
 with $\bar H=(H_{11}+H_{22})/2$, $\lambda_{12}=\sqrt{\Lambda_{11}\Lambda_{22}}$, $\xi_{12}=\Lambda_{12}$.
 
----
 
-## Repository structure
-
-```
-.
-├── LogSfBM_Class.py                  # Core simulation class (univariate & multivariate)
-├── LogSfBM_StatisticalProperties.py  # Moment-scaling, autocovariance & distributional diagnostics
-├── docs/
-│   └── LogSfBM_Model_documentation.pdf  # Full technical reference
-├── requirements.txt
-└── README.md
-```
 
 ---
 
-## `LogSfBM_Class.py` — Core simulation
-
-- **`GaussianProcessSimulation(covariance, size)`** — exact stationary Gaussian process simulation via Wood–Chan circulant embedding.
-- **`LogS_fBM`** class — univariate (scalar $H,\lambda^2$) or multivariate (co-Hurst/cointermittency matrices) construction.
-  - `CovarianceFunction_SfBM`, `CrossAutocovariance_mSfBM` — evaluate $C_\omega(t,s)$ / $C_{12}(\tau)$ above.
-  - `_sfbmomcorr` — discretised autocovariance of $\omega_t$, with the $H=0$ (MRW/logarithmic) branch $c_k=\lambda^2\log(T/k\,dt)$.
-  - `GenerateSfBM_btwtimebounds`, `Generate_IntegratedSfBM` — simulate $\omega_t$ on a bounded grid, and the integrated field $\Omega_t$.
-  - `LogSfBM_Simulation` — main simulator: builds $\omega_t$, then the MRW/MRM paths $(X_t,M_t)$ above. Multivariate backend is `"Cholesky"` (exact, $O((d\cdot\text{size})^3)$) or `"fft"` (default, spectral factorisation).
-  - `LogSfBM_Nested_Simulation` — nested variant with externally supplied $\omega$, using the full exponential $e^{\omega_s}$ (hierarchical multifractal construction).
-  - `genlogVol`, `genlogVol_New_perscale` — log-realised-volatility proxy via quadratic-variation aggregation, $\mathrm{QV}_k=\sum_j(X_{(j+1)/M}-X_{j/M})^2$.
-
----
-
-## `LogSfBM_StatisticalProperties.py` — Statistical diagnostics
-
-Operates on increments $\delta_\tau X_t = X_{t+\tau}-X_t$ of the MRW price, the MRM variance, the raw field $\omega_t$, or the log-realised-variance proxy.
-
-- **`Increments`** — shared primitive; simulates or reads increments from empirical data.
-- **`LogIncrementsDistributionDensityAcrossScale`** — KDE of standardised increments vs. the Gaussian reference, across scales $\tau$.
-- **`MomentIncrementsRepresentation`** — empirical $q$-th moment $M_q(\tau)=\mathbb E[|\delta_\tau X_t|^q]$ and its log-log scaling exponent $\zeta(q)$.
-- **`MomentIncrementsRepresentationSimulatedVSTheoretical`** — compares $M_q(\tau)$ against closed-form predictions (separate formulas for MRW, MRM, and S-fbm increments).
-- **`MomentIncrementsEvolutionWrtParameter`** — sensitivity of $M_q(\tau)$, $\zeta(q)$ to $H$ and $\lambda^2$.
-
+## Overview
+- **`LogSfBM_Class.py`** — simulates the log-vol field $\omega_t$ and derives the MRW/MRM paths $(X_t,M_t)$, in both univariate ($H,\lambda^2$) and multivariate (co-Hurst/cointermittency matrices) form.
+- **`LogSfBM_StatisticalProperties.py`** — checks the model's multifractal scaling by estimating the moments $M_q(\tau)=\mathbb E[|\delta_\tau X_t|^q]$ and their exponent $\zeta(q)$, empirically and against theory.
 ---
 
 ## Documentation
 
-Full mathematical documentation — every function with its exact formula, parameter tables, and numerical caveats — is in [`docs/LogSfBM_Model_documentation.pdf`](docs/LogSfBM_Model_documentation.pdf).
+Full mathematical documentation — every function with its exact formula, parameter tables, and numerical caveats — is in [`LogSfBM_Model_documentation.pdf`](LogSfBM_Model_documentation.pdf).
+
+---
 
 ## Installation
 
@@ -96,6 +66,3 @@ pip install -r requirements.txt
 2. Zarhali, O., Bacry, E., Muzy, J.-F. (2026). "From rough to multifractal multidimensional volatility: A multidimensional Log S-fBM model." arXiv: https://arxiv.org/abs/2601.10517
 3. Wood, A. T. A., Chan, G. (1994). "Simulation of Stationary Gaussian Processes in $[0,1]^d$." *J. Comput. Graph. Statist.*, 3(4), 409–432.
 
-## License
-
-MIT
