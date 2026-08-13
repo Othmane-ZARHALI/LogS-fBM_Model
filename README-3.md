@@ -30,15 +30,6 @@ $$
 
 Main parameters: $H$ (Hurst/roughness), $T$ (correlation scale), $\lambda^2$ (intermittency), $\sigma^2$ (variance).
 
-The $d$-dimensional extension replaces $(H,\lambda^2)$ with a symmetric **co-Hurst matrix** $H_{ij}$ and **cointermittency matrix** $\Lambda_{ij}$; for $d=2$, the cross-covariance is
-
-$$
-C_{12}(\tau) = \lambda_{12}\,\xi_{12}\left[\frac{1}{2H_{12}}-\frac{1}{2\bar H-1}+\frac{|\tau|}{T}\left(\frac{-1}{2H_{12}-1}+\frac{1}{2\bar H-1}\right)+\left(\frac{|\tau|}{T}\right)^{2H_{12}}\left(\frac{1}{2H_{12}-1}-\frac{1}{2H_{12}}\right)\right]\mathbf 1_{|\tau|\le T},
-$$
-
-with $\bar H=(H_{11}+H_{22})/2$, $\lambda_{12}=\sqrt{\Lambda_{11}\Lambda_{22}}$, $\xi_{12}=\Lambda_{12}$.
-
-
 
 ---
 
